@@ -5,6 +5,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import Customer
+from .forms import CustomerForm
+
+def add_customer(request):
+    if request.method == "POST":
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('customer_list')  # Redirect to the list of customers
+    else:
+        form = CustomerForm()
+    return render(request, 'add_customer.html', {'form': form})
 
 @login_required
 def customer_delete(request, customer_id):

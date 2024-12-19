@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<a href="{% url 'add_customer' %}" class="btn btn-success">Add Customer</a>
 <h1>Customer List</h1>
 <table class="table table-striped">
     <thead>
@@ -15,8 +16,8 @@
         {% if customers %}
             {% for customer in customers %}
                 <tr>
-                    <td>{{ customer.user.username }}</td>
-                    <td>{{ customer.user.email }}</td>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.email }}</td>
                     <td>{{ customer.phone }}</td>
                     <td>{{ customer.address }}</td>
                     <td>
